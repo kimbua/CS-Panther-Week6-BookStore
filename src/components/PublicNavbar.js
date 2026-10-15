@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const PublicNavbar = () => {
   return (
-    <Navbar variant="dark" expand="sm" className="glass-navbar">
+    <Navbar variant="light" expand="sm" className="glass-navbar">
       <Navbar.Brand as={NavLink} to="/" className="brand">
         <span className="brand-dot" />
         <span className="brand-text">BookStore</span>

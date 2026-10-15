@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { ClipLoader } from "react-spinners";
 
 import { useHistory } from "react-router-dom";
@@ -57,8 +57,8 @@ const ReadingPage = () => {
     <Container>
       <Row className="justify-content-center">
         <Col md={6}>
-          <h1 className="text-center">Reading List</h1>
-          <hr />
+          <h1 className="text-center page-title">Reading List</h1>
+          <hr className="glass-divider" />
         </Col>
       </Row>
       <Row>
@@ -67,36 +67,33 @@ const ReadingPage = () => {
             <div className="text-center">
               <ClipLoader color="#f86c6b" size={150} loading={true} />
             </div>
+          ) : books.length === 0 ? (
+            <div className="glass empty-state">
+              Your reading list is empty. Add some books from the home page!
+            </div>
           ) : (
-            <ul className="list-unstyled d-flex flex-wrap justify-content-between">
+            <ul className="book-grid">
               {books.map((book) => (
                 <li key={book.id}>
-                  <Card
-                    style={{
-                      width: "12rem",
-                      height: "27rem",
-                      marginBottom: "2rem",
-                      position: "relative",
-                    }}
-                  >
-                    <Card.Img
-                      variant="top"
+                  <div className="glass book-card">
+                    <img
+                      className="cover"
                       src={`${BACKEND_API}/${book.imageLink}`}
+                      alt={book.title}
                       onClick={() => handleClickBook(book.id)}
                     />
-                    <Card.Body>
-                      <Card.Title>{book.title}</Card.Title>
-                      <Card.Text>@{book.author}</Card.Text>
+                    <div className="card-body">
+                      <h5 className="book-title">{book.title}</h5>
+                      <p className="book-author">@{book.author}</p>
                       <Button
-                        className="position-absolute btn-danger"
-                        style={{ top: "5px", right: "5px" }}
-                        size="sm"
+                        className="remove-btn"
+                        aria-label={`Remove ${book.title}`}
                         onClick={() => removeBook(book.id)}
                       >
                         &times;
                       </Button>
-                    </Card.Body>
-                  </Card>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>

@@ -8,11 +8,11 @@ const SearchForm = ({
   handleSubmit,
 }) => {
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Row>
+    <Form onSubmit={handleSubmit} className="glass glass-search">
+      <Form.Row className="align-items-center m-0">
         <Col>
           <Form.Control
-            placeholder="Search..."
+            placeholder="Search title, author..."
             value={searchInput}
             onChange={handleSearchChange}
           />
@@ -20,7 +20,7 @@ const SearchForm = ({
         {loading ? (
           <Button disabled>
             <span
-              className="spinner-border spinner-border-sm"
+              className="spinner-border spinner-border-sm mr-2"
               role="status"
               aria-hidden="true"
             ></span>

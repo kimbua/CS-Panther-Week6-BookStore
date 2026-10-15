@@ -54,34 +54,38 @@ const BookDetailPage = () => {
           <ClipLoader color="#f86c6b" size={150} loading={true} />
         </div>
       ) : (
-        <Row className="border border-info mt-5">
+        <Row className="glass detail-panel mx-0 mt-3">
           <Col md={3}>
             {book && (
               <img
-                className="w-100"
+                className="detail-cover"
                 src={`${BACKEND_API}/${book.imageLink}`}
-                alt=""
+                alt={book.title}
               />
             )}
           </Col>
           <Col md={9}>
             {book && (
               <>
-                <h2>{book.title}</h2>
-                <div>
-                  <strong>Author:</strong> {book.author}
-                </div>
-                <div>
-                  <strong>Year:</strong> {book.year}
-                </div>
-                <div>
-                  <strong>Country:</strong> {book.country}
-                </div>
-                <div>
-                  <strong>Pages:</strong> {book.pages}
-                </div>
-                <div>
-                  <strong>Language:</strong> {book.language}
+                <h2 className="detail-title page-title">{book.title}</h2>
+                <p className="page-subtitle">by {book.author}</p>
+                <div className="meta-chips">
+                  <div className="meta-chip">
+                    <span>Year</span>
+                    {book.year}
+                  </div>
+                  <div className="meta-chip">
+                    <span>Country</span>
+                    {book.country}
+                  </div>
+                  <div className="meta-chip">
+                    <span>Pages</span>
+                    {book.pages}
+                  </div>
+                  <div className="meta-chip">
+                    <span>Language</span>
+                    {book.language}
+                  </div>
                 </div>
                 <Button onClick={() => addToReadingList(book)}>
                   Add to Reading List
